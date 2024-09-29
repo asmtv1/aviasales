@@ -49,7 +49,7 @@ const transplantsFilterSlice = createSlice({
       };
 
       const selectAllFilters = () => {
-        state.selectedTransplantsFilters = [...allFilters, "all"];
+        state.selectedTransplantsFilters = [...allFilters, "all"]; //зачекать всё
       };
 
       const deselectAllFilters = () => {
@@ -60,8 +60,8 @@ const transplantsFilterSlice = createSlice({
         isFilterSelected("all") ? deselectAllFilters() : selectAllFilters();
       } else {
         isFilterSelected(filter)
-          ? deselectFilter(filter)
-          : state.selectedTransplantsFilters.push(filter);
+          ? deselectFilter(filter) //анчек
+          : state.selectedTransplantsFilters.push(filter); //чек 
       }
 
       if (
