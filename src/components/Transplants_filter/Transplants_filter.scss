@@ -1,0 +1,48 @@
+.transplants_filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  width: 232px;
+  height: 252px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+.transplants_filter__label {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 154%;
+  color: #4a4a4a;
+  height: 40px;
+  &:hover {
+    background: #f1fcff;
+  }
+}
+.transfers_number {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: #4a4a4a;
+  letter-spacing: 0.5px;
+  padding: 10px 0 10px 20px;
+}
+.chek__input {
+  box-sizing: border-box;
+  appearance: none;
+  padding-right: 20px;
+}
+
+.chek__box {
+  box-sizing: border-box;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  background-repeat: no-repeat;
+  background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="19" height="19" rx="1.5" stroke="%239ABBCE"/></svg>');
+}
+.chek__input:checked + .chek__box {
+  background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="19" height="19" rx="1.5" stroke="%232196F3"/><path d="M8.28571 14L4 10.1612L5.20857 9.0787L8.28571 11.8273L14.7914 6L16 7.09021L8.28571 14Z" fill="%232196F3"/></svg>');
+}
+
