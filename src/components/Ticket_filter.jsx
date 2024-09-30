@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCheapest, setFastest, setOptimal } from "../store/store";
+import {
+  setCheapest,
+  setFastest,
+  setOptimal,
+} from "../store/ticketFilterSlice";
 
 export default function Ticket_filter({}) {
   const dispatch = useDispatch();

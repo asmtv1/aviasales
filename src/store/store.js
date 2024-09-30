@@ -1,92 +1,19 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-import _ from "lodash";
+import { configureStore } from "@reduxjs/toolkit";
 
-const ticketFilterSlice = createSlice({
-  name: "ticketFilter",
-  initialState: {
-    selectedTicketFilter: "cheapest", // Выбранный фильтр по умолчанию
-  },
-  reducers: {
-    setCheapest: (state) => {
-      state.selectedTicketFilter = "cheapest";
-    },
-    setFastest: (state) => {
-      state.selectedTicketFilter = "fastest";
-    },
-    setOptimal: (state) => {
-      state.selectedTicketFilter = "optimal";
-    },
-  },
-});
+import ticketFilterReducer from "./ticketFilterSlice";
+import searchIdReducer from "./searchIdSlice";
+import transplantsFilterReducer from "./transplantsFilterSlice";
+import loggerMiddleware from "./loggerMiddleware";
+import fetchDataReducer from "./fetchDataSlice";
 
-// Экспортируем экшены, чтобы можно было использовать их в компонентах
-export const { setCheapest, setFastest, setOptimal } =
-  ticketFilterSlice.actions;
-
-const transplantsFilterSlice = createSlice({
-  name: "transplantsFilter",
-  initialState: {
-    selectedTransplantsFilters: [], // По умолчанию, ничего не выбран
-  },
-  reducers: {
-    toggleTransfer: (state, action) => {
-      const filter = action.payload;
-
-      const allFilters = [
-        "noTransfers",
-        "oneTransfers",
-        "twoTransfers",
-        "threeTransfers",
-      ];
-
-      const isFilterSelected = (filterName) =>
-        state.selectedTransplantsFilters.includes(filterName);
-
-      const deselectFilter = (filterName) => {
-        state.selectedTransplantsFilters =
-          state.selectedTransplantsFilters.filter((f) => f !== filterName);
-      };
-
-      const selectAllFilters = () => {
-        state.selectedTransplantsFilters = [...allFilters, "all"]; //зачекать всё
-      };
-
-      const deselectAllFilters = () => {
-        state.selectedTransplantsFilters = [];
-      };
-
-      if (filter === "all") {
-        isFilterSelected("all") ? deselectAllFilters() : selectAllFilters();
-      } else {
-        isFilterSelected(filter)
-          ? deselectFilter(filter) //анчек
-          : state.selectedTransplantsFilters.push(filter); //чек 
-      }
-
-      if (
-        _.isEqual(
-          _.sortBy([...state.selectedTransplantsFilters]),
-          _.sortBy(allFilters) // проверяем все ли зачекано кроме all. порядок не важен
-        )
-      ) {
-        selectAllFilters(); // если да чекаем и all
-      } else {
-        if (filter !== "all") {
-          //если не нажали all, и теперь не всё зачекано значит удаляем all
-          deselectFilter("all");
-        }
-      }
-    },
-  },
-});
-
-export const { toggleTransfer } = transplantsFilterSlice.actions;
-
-// Создаем store с помощью configureStore
+// Создаем store с помощью configureStore и кастомным мидлваром
 export const store = configureStore({
   reducer: {
-    ticketFilter: ticketFilterSlice.reducer, // Название редьюсера
-    transplantsFilter: transplantsFilterSlice.reducer, // Название другого редьюсера
+    ticketFilter: ticketFilterReducer,
+    transplantsFilter: transplantsFilterReducer,
+    searchId: searchIdReducer,
+    fetchData: fetchDataReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(loggerMiddleware), // Добавление кастомного мидлвара
 });

@@ -1,12 +1,18 @@
-import { useState } from "react";
 import Tickets_list from "./components/Tickets_list";
 import Transplants_filter from "./components/Transplants_filter/Transplants_filter";
 import Ticket_filter from "./components/Ticket_filter";
 import "./App.scss";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchSearchId } from "./components/api";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const dispatch = useDispatch(); // Получаем dispatch
 
+  useEffect(() => {
+    // При маунте компонента диспатчим fetchSearchId
+    dispatch(fetchSearchId());
+  }, [dispatch]); // Зависимость, чтобы избежать бесконечного рендера
   return (
     <>
       <div className="background">

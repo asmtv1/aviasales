@@ -1,41 +1,89 @@
 import "./FlightTable.scss";
-
-export default function FlightTable({}) {
+import { add } from "date-fns";
+import { convertMinutesToHours, getTransferText } from "../utils";
+export default function FlightTable({ item }) {
+  const initialDate = new Date(item[1].date);
+  const hours = initialDate.getHours();
+  const minutes = initialDate.getMinutes();
+  const formattedTime = `${String(hours).padStart(2, "0")}:${String(
+    minutes
+  ).padStart(2, "0")}`;
+  function prib(minutes, additionalHours = 0) {
+    const totalMinutes = minutes + additionalHours * 60; // Преобразуем дополнительные часы в минуты
+    const hours = Math.floor(totalMinutes / 60);
+    const remainingMinutes = totalMinutes % 60;
+    return `${hours}:${remainingMinutes}`;
+  }
   return (
     <table className="flight-table">
       <tbody>
         <tr>
           <td className="flight-route">
-            <span>MOW – NKT</span>
+            <span>
+              {item[0].origin} - {item[0].destination}
+            </span>
             <br />
-            <span className="flight-time">10:45 – 08:00</span>
+            <span className="flight-time">
+              {formattedTime} - {prib(minutes)}
+            </span>
           </td>
           <td className="flight-duration">
             <span>В ПУТИ</span>
             <br />
-            <span className="duration">21ч 15м</span>
+            <span className="duration">
+              {convertMinutesToHours(item[0].duration)}
+            </span>
           </td>
           <td className="flight-transfers">
-            <span>2 ПЕРЕСАДКИ</span>
+            <span>
+              {item[0].stops.length} {getTransferText(item[0].stops.length)}
+            </span>
             <br />
-            <span className="transfer-locations">HKG, JNB</span>
+            <span className="transfer-locations">
+              {item[0].stops.length > 0
+                ? item[0].stops.map((item, index, array) => {
+                    if (index !== array.length - 1) {
+                      return `${item}, `;
+                    } else {
+                      return item;
+                    }
+                  })
+                : "без пересадок"}
+            </span>
           </td>
         </tr>
         <tr>
           <td className="flight-route">
-            <span>MOW – NKT</span>
+            <span>
+              {item[1].origin} - {item[1].destination}
+            </span>
             <br />
             <span className="flight-time">11:20 – 00:50</span>
           </td>
           <td className="flight-duration">
             <span>В ПУТИ</span>
             <br />
-            <span className="duration">13ч 30м</span>
+            <span className="duration">
+              {" "}
+              {convertMinutesToHours(item[1].duration)}
+            </span>
           </td>
           <td className="flight-transfers">
-            <span>1 ПЕРЕСАДКА</span>
+            <span>
+              {item[1].stops.length} {getTransferText(item[1].stops.length)}
+            </span>
             <br />
-            <span className="transfer-locations">HKG</span>
+            <span className="transfer-locations">
+              {item[1].stops.length > 0
+                ? item[1].stops.map((item, index, array) => {
+                    if (index !== array.length - 1) {
+                      return `${item}, `;
+                    } else {
+                      return item;
+                    }
+                  })
+                : "без пересадок"}
+            </span>
           </td>
         </tr>
       </tbody>
