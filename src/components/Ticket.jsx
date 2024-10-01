@@ -5,7 +5,12 @@ export default function Ticket({ item }) {
     <li className="ticket">
       <header className="ticket_header">
         <p className="price">{item.price} P</p>
-        <div className="Company_logo"></div>
+        <div>
+          <img
+            src={`https://images.daisycon.io/airline/?width=110&height=36&color=ffffff&iata=${item.carrier}`}
+            alt="Airline Logo"
+          />
+        </div>
       </header>
       <div className="ticket_body">
         <FlightTable item={item.segments} />

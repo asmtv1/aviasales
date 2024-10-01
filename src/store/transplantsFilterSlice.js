@@ -3,7 +3,13 @@ import _ from "lodash";
 const transplantsFilterSlice = createSlice({
   name: "transplantsFilter",
   initialState: {
-    selectedTransplantsFilters: [], // По умолчанию, ничего не выбран
+    selectedTransplantsFilters: [
+      "all",
+      "noTransfers",
+      "oneTransfers",
+      "twoTransfers",
+      "threeTransfers",
+    ], // По умолчанию, всё выбран
   },
   reducers: {
     toggleTransfer: (state, action) => {

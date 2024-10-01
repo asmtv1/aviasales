@@ -1,19 +1,11 @@
 import "./FlightTable.scss";
-import { add } from "date-fns";
-import { convertMinutesToHours, getTransferText } from "../utils";
+
+import {
+  convertMinutesToHours,
+  getTransferText,
+  displayFlightTimes,
+} from "../utils";
 export default function FlightTable({ item }) {
-  const initialDate = new Date(item[1].date);
-  const hours = initialDate.getHours();
-  const minutes = initialDate.getMinutes();
-  const formattedTime = `${String(hours).padStart(2, "0")}:${String(
-    minutes
-  ).padStart(2, "0")}`;
-  function prib(minutes, additionalHours = 0) {
-    const totalMinutes = minutes + additionalHours * 60; // Преобразуем дополнительные часы в минуты
-    const hours = Math.floor(totalMinutes / 60);
-    const remainingMinutes = totalMinutes % 60;
-    return `${hours}:${remainingMinutes}`;
-  }
   return (
     <table className="flight-table">
       <tbody>
@@ -24,7 +16,7 @@ export default function FlightTable({ item }) {
             </span>
             <br />
             <span className="flight-time">
-              {formattedTime} - {prib(minutes)}
+              {displayFlightTimes(item[0].date, item[0].duration)}
             </span>
           </td>
           <td className="flight-duration">
@@ -58,7 +50,10 @@ export default function FlightTable({ item }) {
               {item[1].origin} - {item[1].destination}
             </span>
             <br />
-            <span className="flight-time">11:20 – 00:50</span>
+            <span className="flight-time">
+              {" "}
+              {displayFlightTimes(item[1].date, item[1].duration)}
+            </span>
           </td>
           <td className="flight-duration">
             <span>В ПУТИ</span>
