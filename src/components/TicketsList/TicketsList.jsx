@@ -27,7 +27,7 @@ export default function TicketsList() {
       // Таймер для обновления прогресса
       const interval = setInterval(() => {
         setProgress((prev) => Math.min(prev + 1, 100)); // Увеличиваем прогресс
-      }, 200);
+      }, 160);
 
       return () => clearInterval(interval);
     }
