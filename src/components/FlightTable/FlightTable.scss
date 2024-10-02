@@ -2,6 +2,7 @@
   width: 100%;
   margin-top: 20px;
 
+  // Общие стили для ячеек таблицы
   td {
     padding: 12px 20px;
     vertical-align: top;
@@ -9,28 +10,29 @@
     font-size: 12px;
     color: #a0b0b9;
 
-    &.flight-route,
-    &.flight-duration,
-    &.flight-transfers {
-      .flight-time,
-      .duration,
-      .transfer-locations {
+    // Стили для элементов внутри ячеек
+    &.flight-table__route,
+    &.flight-table__duration,
+    &.flight-table__transfers {
+      .flight-table__time,
+      .flight-table__duration-value,
+      .flight-table__transfer-locations {
         font-size: 14px;
         font-weight: 600;
         color: #4a4a4a;
       }
     }
 
-    &.flight-route {
+    &.flight-table__route {
       width: 33%;
     }
 
-    &.flight-duration {
+    &.flight-table__duration {
       width: 33%;
       text-align: left;
     }
 
-    &.flight-transfers {
+    &.flight-table__transfers {
       width: 33%;
       text-align: left;
     }

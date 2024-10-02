@@ -12,7 +12,7 @@ const transplantsSelect = createSelector(
     if (!data || !Array.isArray(data)) {
       return []; // Возвращаем пустой массив, если data null или не является массивом
     }
-    let FilteredArray = [];
+    let FilteredArray = new Set();
     const flatData = data.flat();
 
     if (transplantTicketFilter.includes("all")) {
@@ -20,34 +20,49 @@ const transplantsSelect = createSelector(
     }
 
     if (transplantTicketFilter.includes("noTransfers")) {
-      FilteredArray = flatData.filter(
-        (ticket) =>
+      flatData.forEach((ticket) => {
+        if (
           ticket.segments[0].stops.length === 0 ||
           ticket.segments[1].stops.length === 0
-      );
-    }
-    if (transplantTicketFilter.includes("oneTransfers")) {
-      FilteredArray = flatData.filter(
-        (ticket) =>
-          ticket.segments[0].stops.length === 1 ||
-          ticket.segments[1].stops.length === 1
-      );
-    }
-    if (transplantTicketFilter.includes("twoTransfers")) {
-      FilteredArray = flatData.filter(
-        (ticket) =>
-          ticket.segments[0].stops.length === 2 ||
-          ticket.segments[1].stops.length === 2
-      );
-    }
-    if (transplantTicketFilter.includes("threeTransfers")) {
-      FilteredArray = flatData.filter(
-        (ticket) =>
-          ticket.segments[0].stops.length === 3 ||
-          ticket.segments[1].stops.length === 3
-      );
+        ) {
+          FilteredArray.add(ticket);
+        }
+      });
     }
 
+    if (transplantTicketFilter.includes("oneTransfers")) {
+      flatData.forEach((ticket) => {
+        if (
+          ticket.segments[0].stops.length === 1 ||
+          ticket.segments[1].stops.length === 1
+        ) {
+          FilteredArray.add(ticket);
+        }
+      });
+    }
+
+    if (transplantTicketFilter.includes("twoTransfers")) {
+      flatData.forEach((ticket) => {
+        if (
+          ticket.segments[0].stops.length === 2 ||
+          ticket.segments[1].stops.length === 2
+        ) {
+          FilteredArray.add(ticket);
+        }
+      });
+    }
+
+    if (transplantTicketFilter.includes("threeTransfers")) {
+      flatData.forEach((ticket) => {
+        if (
+          ticket.segments[0].stops.length === 3 ||
+          ticket.segments[1].stops.length === 3
+        ) {
+          FilteredArray.add(ticket);
+        }
+      });
+    }
+    FilteredArray = Array.from(FilteredArray);
     return FilteredArray;
   }
 );
@@ -56,7 +71,7 @@ export const selectByFilter = createSelector(
   [transplantsSelect, selectTicketFilter],
   (data, TicketFilter) => {
     if (data.length === 0) {
-      return data;
+      return data; //обработаю в компоненте, и выведу див с тем что 0 билетов
     }
     const flatData = data.flat(); // Плоский массив, если это массив массивов
     if (TicketFilter === "cheapest") {

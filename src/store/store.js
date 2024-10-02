@@ -6,7 +6,7 @@ import transplantsFilterReducer from "./slice/transplantsFilterSlice";
 import loggerMiddleware from "./middleware/loggerMiddleware";
 import fetchDataReducer from "./slice/fetchDataSlice";
 
-// Создаем store с помощью configureStore и кастомным мидлваром
+// store с кастомным мидлваром
 export const store = configureStore({
   reducer: {
     ticketFilter: ticketFilterReducer,

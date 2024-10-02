@@ -6,27 +6,28 @@ import {
   setOptimal,
 } from "../../store/slice/ticketFilterSlice";
 
-export default function Ticket_filter({}) {
+export default function TicketFilter() {
+  // Изменено имя компонента
   const dispatch = useDispatch();
   const selectedFilter = useSelector(
     (state) => state.ticketFilter.selectedTicketFilter
   );
 
   return (
-    <table className="ticket_filter">
+    <table className="ticket-filter">
       <tbody>
         <tr>
           <td>
             <input
-              className="ticket_filter__button"
+              className="ticket-filter__button"
               type="radio"
               id="cheapest"
               name="ticket_filter"
               onChange={() => dispatch(setCheapest())}
-              checked={selectedFilter === "cheapest"} // Проверяем, выбран ли фильтр
+              checked={selectedFilter === "cheapest"}
             />
             <label
-              className="ticket_filter_label ticket_filter_label__first"
+              className="ticket-filter__label ticket-filter__label--first"
               htmlFor="cheapest"
             >
               САМЫЙ ДЕШЕВЫЙ
@@ -34,28 +35,28 @@ export default function Ticket_filter({}) {
           </td>
           <td>
             <input
-              className="ticket_filter__button"
+              className="ticket-filter__button"
               type="radio"
               id="fastest"
               name="ticket_filter"
               onChange={() => dispatch(setFastest())}
-              checked={selectedFilter === "fastest"} // Проверяем, выбран ли фильтр
+              checked={selectedFilter === "fastest"}
             />
-            <label className="ticket_filter_label" htmlFor="fastest">
+            <label className="ticket-filter__label" htmlFor="fastest">
               САМЫЙ БЫСТРЫЙ
             </label>
           </td>
           <td>
             <input
-              className="ticket_filter__button"
+              className="ticket-filter__button"
               type="radio"
               id="optimal"
               name="ticket_filter"
               onChange={() => dispatch(setOptimal())}
-              checked={selectedFilter === "optimal"} // Проверяем, выбран ли фильтр
+              checked={selectedFilter === "optimal"}
             />
             <label
-              className="ticket_filter_label ticket_filter_label__last"
+              className="ticket-filter__label ticket-filter__label--last"
               htmlFor="optimal"
             >
               ОПТИМАЛЬНЫЙ
