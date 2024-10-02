@@ -10,7 +10,7 @@ export default function TicketFilter() {
   // Изменено имя компонента
   const dispatch = useDispatch();
   const selectedFilter = useSelector(
-    (state) => state.ticketFilter.selectedTicketFilter
+    (state) => state.ticketFilter.selectedTicketFilter,
   );
 
   return (

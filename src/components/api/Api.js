@@ -14,7 +14,7 @@ export const fetchSearchId = () => async (dispatch) => {
   dispatch(fetchStarted()); // Начинаем загрузку
   try {
     const response = await fetch(
-      "https://aviasales-test-api.kata.academy/search"
+      "https://aviasales-test-api.kata.academy/search",
     ); // Ожидание ответа от API
     const searchid = await response.json(); // Преобразуем ответ в JSON
 
@@ -29,7 +29,7 @@ export const fetchData = (searchId, loading) => async (dispatch) => {
 
   try {
     const response = await fetch(
-      `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`
+      `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`,
     ); // Ожидание ответа от API
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`); // Проверка на HTTP ошибки

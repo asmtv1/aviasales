@@ -2,7 +2,7 @@ import Ticket from "../Ticket/Ticket";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../api/Api";
-import { selectByFilter } from "../../store/slice/sortSlice";
+import { selectByFilter } from "../../store/selector/sortSekector";
 import "./TicketsList.scss";
 
 export default function TicketsList() {
@@ -12,7 +12,7 @@ export default function TicketsList() {
   const searchId = useSelector((state) => state.searchId.data);
   const { loading, error } = useSelector((state) => state.fetchData);
   const selectedTransplantsFilters = useSelector(
-    (state) => state.transplantsFilter.selectedTransplantsFilters
+    (state) => state.transplantsFilter.selectedTransplantsFilters,
   );
   const filteredData = useSelector(selectByFilter);
 

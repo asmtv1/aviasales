@@ -4,7 +4,7 @@ export function displayFlightTimes(date, duration) {
   const hours = initialDate.getHours();
   const minutes = initialDate.getMinutes();
   const formattedTime = `${String(hours).padStart(2, "0")}:${String(
-    minutes
+    minutes,
   ).padStart(2, "0")}`;
   const result = add(initialDate, {
     minutes: duration, // Добавляем duration минут к исоходной date
@@ -12,7 +12,7 @@ export function displayFlightTimes(date, duration) {
   const hoursResult = result.getHours();
   const minutesResult = result.getMinutes();
   const formattedTimeResult = `${String(hoursResult).padStart(2, "0")}:${String(
-    minutesResult
+    minutesResult,
   ).padStart(2, "0")}`;
   return `${formattedTime} - ${formattedTimeResult}`;
 }

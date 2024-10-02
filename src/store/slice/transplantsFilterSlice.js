@@ -49,7 +49,7 @@ const transplantsFilterSlice = createSlice({
       if (
         _.isEqual(
           _.sortBy([...state.selectedTransplantsFilters]),
-          _.sortBy(allFilters) // проверяем все ли зачекано кроме all. порядок не важен
+          _.sortBy(allFilters), // проверяем все ли зачекано кроме all. порядок не важен
         )
       ) {
         selectAllFilters(); // если да чекаем и all

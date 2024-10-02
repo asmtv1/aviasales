@@ -64,7 +64,7 @@ const transplantsSelect = createSelector(
     }
     FilteredArray = Array.from(FilteredArray);
     return FilteredArray;
-  }
+  },
 );
 
 export const selectByFilter = createSelector(
@@ -82,11 +82,11 @@ export const selectByFilter = createSelector(
         (a, b) =>
           a.segments[0].duration +
           a.segments[1].duration -
-          (b.segments[0].duration + b.segments[1].duration) //сорт по минимальному времени в воздухе. туда + обратно.
+          (b.segments[0].duration + b.segments[1].duration), //сорт по минимальному времени в воздухе. туда + обратно.
       );
     }
     if (TicketFilter === "optimal") {
       return data; // я ХЗ что вы подразумиваете под оптимальным. напишите в тз, испралю.
     }
-  }
+  },
 );

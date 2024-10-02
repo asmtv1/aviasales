@@ -5,7 +5,7 @@ import { toggleTransfer } from "../../store/slice/transplantsFilterSlice";
 export default function Transplants_filter() {
   const dispatch = useDispatch();
   const selectedFilters = useSelector(
-    (state) => state.transplantsFilter.selectedTransplantsFilters
+    (state) => state.transplantsFilter.selectedTransplantsFilters,
   );
   return (
     <section className="transplants-filter">
