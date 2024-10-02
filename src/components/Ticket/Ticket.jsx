@@ -1,4 +1,5 @@
-import FlightTable from "./FlightTable/FlightTable";
+import FlightTable from "../FlightTable/FlightTable";
+import "./Ticket.scss";
 
 export default function Ticket({ item }) {
   return (

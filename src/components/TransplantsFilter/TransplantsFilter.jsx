@@ -1,6 +1,6 @@
-import "./Transplants_filter.scss";
+import "./TransplantsFilter.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTransfer } from "../../store/transplantsFilterSlice";
+import { toggleTransfer } from "../../store/slice/transplantsFilterSlice";
 
 export default function Transplants_filter({}) {
   const dispatch = useDispatch();

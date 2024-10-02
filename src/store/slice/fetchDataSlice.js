@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const fetchDataSlice = createSlice({
   name: "fetchData",
   initialState: {
-    data: null, // сюда будут записаны данные
+    data: [], // сюда будут записаны данные
     loading: false, // флаг загрузки
     error: null, // сюда запишем сообщение об ошибке, если что-то пойдет не так
   },
@@ -12,12 +12,14 @@ const fetchDataSlice = createSlice({
       state.error = null;
     },
     fetchDataSuccess: (state, action) => {
-      state.loading = false;
-      state.data = action.payload; // сохраняем полученные данные в состояние
+      const { tickets, loading } = action.payload;
+      state.loading = loading; // устанавливаем состояние загрузки
+      state.data = [...state.data, ...tickets]; // объединяем старые и новые данные
     },
     fetchDataFailed: (state, action) => {
-      state.loading = false;
-      state.error = action.payload; // сохраняем сообщение об ошибке
+      const { error, loading } = action.payload;
+      state.loading = loading;
+      state.error = error; // сохраняем сообщение об ошибке
     },
   },
 });

@@ -2,13 +2,13 @@ import {
   fetchStarted,
   fetchSuccess,
   fetchFailed,
-} from "../store/searchIdSlice";
+} from "../../store/slice/searchIdSlice";
 
 import {
   fetchDataStarted,
   fetchDataSuccess,
   fetchDataFailed,
-} from "../store/fetchDataSlice";
+} from "../../store/slice/fetchDataSlice";
 
 export const fetchSearchId = () => async (dispatch) => {
   dispatch(fetchStarted()); // Начинаем загрузку
@@ -24,7 +24,7 @@ export const fetchSearchId = () => async (dispatch) => {
   }
 };
 
-export const fetchData = (searchId) => async (dispatch) => {
+export const fetchData = (searchId, loading) => async (dispatch) => {
   dispatch(fetchDataStarted()); // Начинаем загрузку
 
   try {
@@ -35,12 +35,20 @@ export const fetchData = (searchId) => async (dispatch) => {
       throw new Error(`Error: ${response.status}`); // Проверка на HTTP ошибки
     }
     const data = await response.json(); // Преобразуем ответ в JSON
-    dispatch(fetchDataSuccess(data.tickets)); // Успешно загруженные данные отправляем в состояние
-  } catch (error) {
-    console.log(error);
-    if ((error = "500")) {
-      dispatch(fetchData(searchId));
+
+    dispatch(fetchDataSuccess({ tickets: data.tickets, loading: loading })); // Успешно загруженные данные отправляем в состояние
+    if (!data.stop) {
+      setTimeout(() => {
+        dispatch(fetchData(searchId, true));
+      }, 100); // Задержка перед повторным запросом
+    } else {
+      dispatch(fetchDataSuccess({ tickets: [], loading: false }));
     }
-    dispatch(fetchDataFailed(error.message)); // В случае ошибки не 500 отправляем ее в состояние
+  } catch (error) {
+    if (error.message.includes("500")) {
+      dispatch(fetchData(searchId, true)); // Повторный запрос в случае 500 ошибки
+    } else {
+      dispatch(fetchDataFailed({ error: error.message, loading: false })); // В случае другой ошибки
+    }
   }
 };

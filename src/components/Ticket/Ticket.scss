@@ -1,0 +1,21 @@
+.ticket {
+  height: 184px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+.ticket_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 20px;
+  padding-top: 20px;
+}
+
+.price {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: #2196f3;
+}

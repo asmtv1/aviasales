@@ -1,0 +1,60 @@
+.more {
+  position: relative;
+  width: 504px;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  background: #2196f3;
+  border-radius: 5px;
+  /* Текст */
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: background-color 0.3s;
+  &:hover {
+    background: #ffffff;
+    color: #2196f3;
+  }
+}
+.progressBar {
+  margin-top: 20px;
+  position: relative; /* Относительное позиционирование для контейнера */
+  height: 20px; /* Высота полосы прогресса */
+  background-color: #e0e0e0; /* Цвет фона контейнера (светло-серый) */
+  border-radius: 0.25rem; /* Закругление углов */
+  overflow: hidden; /* Скрытие переполнения */
+}
+
+.progress {
+  height: 100%; /* Высота внутреннего элемента прогресса */
+  transition: width 0.6s ease, background 0.6s ease; /* Плавный переход для ширины и цвета */
+  background: linear-gradient(
+    90deg,
+    #ff0000 0%,
+    #00ff08 100%
+  ); /* Градиент от красного до синего */
+  width: 0; /* Начальная ширина */
+}
+
+.progress-label {
+  padding-top: 2px;
+  position: absolute; /* Абсолютное позиционирование для текста */
+  width: 100%; /* Ширина текста равна ширине полосы */
+  text-align: center; /* Выравнивание текста по центру */
+  color: #ffffff; /* Цвет текста (белый) */
+  font-weight: bold; /* Жирный текст */
+}
+.noFilter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 5rem;
+  border: 1px solid #4a4a4a;
+  position: absolute;
+  top: 35%;
+  background-color: #fcfcfc;
+}

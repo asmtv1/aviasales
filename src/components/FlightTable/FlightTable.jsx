@@ -4,7 +4,7 @@ import {
   convertMinutesToHours,
   getTransferText,
   displayFlightTimes,
-} from "../utils";
+} from "../utils/Utils";
 export default function FlightTable({ item }) {
   return (
     <table className="flight-table">

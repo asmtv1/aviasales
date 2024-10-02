@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import ticketFilterReducer from "./ticketFilterSlice";
-import searchIdReducer from "./searchIdSlice";
-import transplantsFilterReducer from "./transplantsFilterSlice";
-import loggerMiddleware from "./loggerMiddleware";
-import fetchDataReducer from "./fetchDataSlice";
+import ticketFilterReducer from "./slice/ticketFilterSlice";
+import searchIdReducer from "./slice/searchIdSlice";
+import transplantsFilterReducer from "./slice/transplantsFilterSlice";
+import loggerMiddleware from "./middleware/loggerMiddleware";
+import fetchDataReducer from "./slice/fetchDataSlice";
 
 // Создаем store с помощью configureStore и кастомным мидлваром
 export const store = configureStore({

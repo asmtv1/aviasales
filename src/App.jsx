@@ -1,18 +1,18 @@
-import Tickets_list from "./components/Tickets_list";
-import Transplants_filter from "./components/Transplants_filter/Transplants_filter";
-import Ticket_filter from "./components/Ticket_filter";
+import Tickets_list from "./components/TicketsList/TicketsList";
+import Transplants_filter from "./components/TransplantsFilter/TransplantsFilter";
+import Ticket_filter from "./components/TicketFilter/TicketFilter";
 import "./App.scss";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchSearchId } from "./components/api";
+import { fetchSearchId } from "./components/api/Api";
 
 function App() {
   const dispatch = useDispatch(); // Получаем dispatch
 
   useEffect(() => {
-    // При маунте компонента диспатчим fetchSearchId
+    // диспатчим fetchSearchId
     dispatch(fetchSearchId());
-  }, [dispatch]); // Зависимость, чтобы избежать бесконечного рендера
+  }, [dispatch]);
   return (
     <>
       <div className="background">
