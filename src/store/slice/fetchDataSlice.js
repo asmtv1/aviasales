@@ -11,10 +11,14 @@ const fetchDataSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    fetchDataSuccess: (state, action) => {
+   fetchDataSuccess: (state, action) => {
       const { tickets, loading } = action.payload;
+      const updatedTickets = tickets.map((ticket, index) => ({
+        ...ticket,
+        id: ticket.id || Date.now() + index, // Генерируем уникальный id дата + index
+      }));
       state.loading = loading; // устанавливаем состояние загрузки
-      state.data = [...state.data, ...tickets]; // объединяем старые и новые данные
+      state.data = [...state.data, ...updatedTickets]; // объединяем старые и новые данные
     },
     fetchDataFailed: (state, action) => {
       const { error, loading } = action.payload;
