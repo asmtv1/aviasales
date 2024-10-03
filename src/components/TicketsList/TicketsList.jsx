@@ -69,8 +69,8 @@ export default function TicketsList() {
         </div>
       </div>
       <ul className="tickets-list__items">
-        {filteredData.slice(0, number).map((item, index) => (
-          <Ticket key={index} item={item} />
+        {filteredData.slice(0, number).map((item) => (
+          <Ticket key={item.id} item={item} /> //теперь тут "уникальный" id
         ))}
         {number < filteredData.length && ( // Проверка, есть ли еще билеты для показа
           <button onClick={handleClick} className="tickets-list__more-button">
